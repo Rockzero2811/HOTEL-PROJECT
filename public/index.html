@@ -3,179 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEXTER TEST PAGE</title>
+    <title>Surf Camp</title>
     <style>
         body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            color: #fff;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        .header {
-            width: 100%;
-            background-color: #222;
-            padding: 10px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            z-index: 1000;
-        }
-        .header button {
-            background: linear-gradient(45deg, #f06, #f79);
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
             color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .header button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-        }
-        .container {
-            width: 420px;
-            margin-top: 60px; /* Space for header */
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
             position: relative;
+            z-index: 1;
         }
-        .gallery {
+
+        nav {
             width: 100%;
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-            border: 3px solid #444;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-        }
-        .gallery-wrapper {
+            padding: 20px;
             display: flex;
-            width: 200%;
-            height: 100%;
-            overflow: hidden;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
             position: absolute;
-            animation: scroll 15s infinite linear;
+            top: 0;
+            z-index: 2;
         }
-        .gallery img {
-            width: 420px;
-            height: 250px;
-            object-fit: cover;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .location-note {
-            margin-top: 20px;
-            font-size: 16px;
-            color: #ccc;
-            text-align: center;
-        }
-        .location {
-            background: #444;
-            padding: 20px;
-            border-radius: 5px;
-            font-size: 20px;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .note {
-            background: #555;
-            padding: 20px;
-            border-radius: 5px;
-            font-size: 18px;
-            color: #fff;
-        }
-        .dialog {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background: #222;
-            border: 2px solid #555;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            text-align: center;
-        }
-        .dialog h2 {
-            margin: 0;
+
+        .logo {
             font-size: 24px;
-            color: #fff;
+            color: #ff6700;
+            font-weight: bold;
+            text-transform: uppercase;
         }
-        .dialog button {
-            margin-top: 10px;
-            padding: 10px 20px;
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
             font-size: 16px;
-            cursor: pointer;
-            background-color: #444;
-            border: none;
-            color: #fff;
-            border-radius: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease-in-out;
         }
-        .dialog button:hover {
-            background-color: #666;
+
+        .nav-links a:hover {
+            background-color: #ff6700;
+        }
+
+        .header-content h1 {
+            font-size: 56px;
+            margin: 0;
+            animation: fadeInDown 1s ease-in-out;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-content p {
+            font-size: 28px;
+            margin: 10px 0;
+            animation: fadeInUp 1.5s ease-in-out;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        .service-card {
+            background-color: #ff6700;
+            color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <button onclick="navigateTo('home.html')">Home</button>
-        <button onclick="navigateTo('contact.html')">Contact Us</button>
-        <button onclick="navigateTo('room.html')">Room</button>
-    </div>
-
-    <div class="dialog" id="welcomeDialog">
-        <h2>Welcome to Our Hotel!</h2>
-        <button onclick="closeDialog()">OK</button>
-    </div>
-
-    <div class="container">
-        <div class="gallery">
-            <div class="gallery-wrapper">
-                <img src="https://via.placeholder.com/420x250" alt="Hotel Image 1">
-                <img src="https://via.placeholder.com/420x250" alt="Hotel Image 2">
-                <img src="https://via.placeholder.com/420x250" alt="Hotel Image 3">
-                <!-- Duplicate images for continuous scroll effect -->
-                <img src="https://via.placeholder.com/420x250" alt="Hotel Image 1">
-                <img src="https://via.placeholder.com/420x250" alt="Hotel Image 2">
-                <img src="https://via.placeholder.com/420x250" alt="Hotel Image 3">
-            </div>
+    <header id="main-header">
+        <nav>
+            <div class="logo">Surf Camp</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-content">
+            <h1>Welcome to Surf Camp</h1>
+            <p>Experience the best surfing adventures with us!</p>
         </div>
-        <div class="location-note">
-            <div class="location">Location: 1234 Hotel St, Suite 100, City, Country</div>
-            <div class="note">Note: Enjoy your stay at our luxurious hotel with all amenities included.</div>
+    </header>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>We are passionate about surfing and dedicated to providing you with the best experience.</p>
+    </section>
+
+    <section id="services" class="section">
+        <h2>Our Services</h2>
+        <div class="service-card">
+            <h3>Surf Lessons</h3>
+            <p>Learn from the best instructors.</p>
         </div>
-    </div>
+        <div class="service-card">
+            <h3>Surfboard Rentals</h3>
+            <p>Top quality equipment available.</p>
+        </div>
+        <div class="service-card">
+            <h3>Guided Tours</h3>
+            <p>Explore the best surfing spots.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>Get in touch to plan your next surf adventure!</p>
+        <form>
+            <input type="text" placeholder="Your Name" required style="padding: 10px; width: 80%; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="email" placeholder="Your Email" required style="padding: 10px; width: 80%; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc;">
+            <textarea placeholder="Your Message" required style="padding: 10px; width: 80%; height: 100px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+            <br>
+            <button type="submit" class="btn" style="padding: 10px 20px; background-color: #ff6700; color: #fff; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Surf Camp. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Display the welcome dialog when the page loads
-        window.onload = function() {
-            document.getElementById('welcomeDialog').style.display = 'block';
-        };
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('main-header');
+            const sections = document.querySelectorAll('.section');
+            const images = [
+                'https://github.com/Rockzero2811/HOTEL-PROJECT/blob/main/Images/Screenshot_20240821_020904.jpg',
+                'https://github.com/yourusername/yourrepo/raw/main/images/surf2.jpg',
+                'https://github.com/yourusername/yourrepo/raw/main/images/surf3.jpg'
+            ];
+            let currentIndex = 0;
 
-        // Function to close the welcome dialog
-        function closeDialog() {
-            document.getElementById('welcomeDialog').style.display = 'none';
-        }
+            function changeBackgroundImage() {
+                header.style.backgroundImage = `url(${images[currentIndex]})`;
+                currentIndex = (currentIndex + 1) % images.length;
+            }
 
-        // Function to handle navigation
-        function navigateTo(page) {
-            window.location.href = page;
-        }
+            setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
+            changeBackgroundImage(); // Set initial image
+
+            function checkScroll() {
+                const triggerBottom = window.innerHeight / 5 * 4;
+
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+
+                    if (sectionTop < triggerBottom) {
+                        section.classList.add('visible');
+                    } else {
+                        section.classList.remove('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check
+        });
     </script>
 </body>
 </html>
